@@ -17,7 +17,7 @@
 DEVICE_PATH := device/xiaomi/vili
 
 # Inherit from device.mk configuration
-$(call inherit-product, device/Xiaomi/vili/device.mk)
+$(call inherit-product, device/xiaomi/vili/device.mk)
 
 # Inherit from PBRP-common stuff, if building PBRP.
 $(call inherit-product-if-exists, vendor/pb/config/common.mk)
