@@ -17,7 +17,10 @@
 DEVICE_PATH := device/xiaomi/vili
 
 # Inherit from device.mk configuration
-$(call inherit-product, $(DEVICE_PATH)/device.mk)
+$(call inherit-product, device/Xiaomi/vili/device.mk)
+
+# Inherit from PBRP-common stuff, if building PBRP.
+$(call inherit-product-if-exists, vendor/pb/config/common.mk)
 
 # Release name
 PRODUCT_RELEASE_NAME := vili
@@ -31,8 +34,3 @@ PRODUCT_MANUFACTURER := Xiaomi
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := $(PRODUCT_RELEASE_NAME)
-
-# Theme
-TW_STATUS_ICONS_ALIGN := center
-TW_Y_OFFSET := 90
-TW_H_OFFSET := -90
