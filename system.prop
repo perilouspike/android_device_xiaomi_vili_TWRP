@@ -1,3 +1,7 @@
+# Device Details
+ro.product.name=vili
+ro.product.product.device=vili
+
 # ADB
 ro.adb.secure=0
 ro.boot.dynamic_partitions=true
