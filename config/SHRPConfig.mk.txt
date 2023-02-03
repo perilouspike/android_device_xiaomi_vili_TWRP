@@ -6,15 +6,13 @@
 # Mandatory flags
 
 # Path of your SHRP Tree *
-SHRP_PATH := device/realme/RMX3081
+SHRP_PATH := device/Xiaomi/vili
 # Maintainer name *
-SHRP_MAINTAINER := perilouspike
+SHRP_MAINTAINER := Farrukh
 # Device codename *
-SHRP_DEVICE_CODE := RMX3081
-# Recovery Type (It can be treble,normal,SAR) [Only for About Section] *
-SHRP_REC_TYPE := Treble
+SHRP_DEVICE_CODE := vili
 # Recovery Type (It can be A/B or A_only) [Only for About Section] *
-SHRP_DEVICE_TYPE := A_only
+SHRP_DEVICE_TYPE := A/B
 # Your device's recovery path, dont use blindly *
 SHRP_REC := /dev/block/bootdevice/by-name/recovery
 
@@ -43,4 +41,3 @@ SHRP_EXPRESS_USE_DATA := true
 # Max Brightness of LED [Optional]
 SHRP_FLASH_MAX_BRIGHTNESS := 200
 
-#
