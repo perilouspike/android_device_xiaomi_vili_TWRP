@@ -61,7 +61,6 @@ BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 service_locator.enable=1 androidboot.usbcontroller=a600000.dwc3 swiotlb=0 loop.max_part=7 cgroup.memory=nokmem,nosocket pcie_ports=compat loop.max_part=7 iptable_raw.raw_before_defrag=1 ip6table_raw.raw_before_defrag=1 buildvariant=user reboot=panic_warm androidboot.init_fatal_reboot_target=recovery
 #BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 
-
 # Args
 BOARD_MKBOOTIMG_ARGS += --base $(BOARD_KERNEL_BASE)
 BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_KERNEL_PAGESIZE)
@@ -156,7 +155,6 @@ BOOT_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 PLATFORM_VERSION := 99.87.36
 PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
 
-
 # Android Verified Boot
 BOARD_AVB_ENABLE := true
 BOARD_AVB_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
@@ -176,33 +174,9 @@ BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
 
-
-
-
-#Init
-#TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_vili
-#TARGET_RECOVERY_DEVICE_MODULES := libinit_vili
-#TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
-
-
-
-
-
-TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_CRYPTO_FBE := true
-TW_INCLUDE_FBE_METADATA_DECRYPT := true
-TW_USE_FSCRYPT_POLICY := 2
-
-
-# Tool
-TW_INCLUDE_REPACKTOOLS := true
-TW_INCLUDE_RESETPROP := true
-TW_INCLUDE_LIBRESETPROP := true
-
-
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
-TW_DEVICE_VERSION=12.0
+#TW_DEVICE_VERSION=12.0
 RECOVERY_SDCARD_ON_DATA := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_EXTRA_LANGUAGES := true
@@ -216,12 +190,35 @@ TW_DEFAULT_BRIGHTNESS := 200
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 TW_NO_SCREEN_BLANK := true
-TW_EXCLUDE_APEX := true
+#TW_EXCLUDE_APEX := true
 TW_HAS_EDL_MODE := true
-TW_SUPPORT_INPUT_AIDL_HAPTICS :=true
-TW_SUPPORT_INPUT_AIDL_HAPTICS_FQNAME := "IVibrator/vibratorfeature"
-TW_SUPPORT_INPUT_AIDL_HAPTICS_FIX_OFF := true
-TW_LOAD_VENDOR_MODULES := "fts_touch_spi_k8.ko adsp_loader_dlkm.ko qti_battery_charger_main_odin.ko qti_battery_charger_main_$(PRODUCT_RELEASE_NAME).ko exfat.ko"
+TW_INCLUDE_FASTBOOTD := true
+
+# Crypto
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+TW_USE_FSCRYPT_POLICY := 2
+
+# Tool
+TW_INCLUDE_REPACKTOOLS := true
+TW_INCLUDE_RESETPROP := true
+TW_INCLUDE_LIBRESETPROP := true
+TW_INCLUDE_BASH := true
+
+# Property Override
+TW_NO_LEGACY_PROPS := true
+TW_OVERRIDE_SYSTEM_PROPS := "ro.build.version.sdk" #needed for Android 11 Gapps
+
+#Init
+#TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_vili
+#TARGET_RECOVERY_DEVICE_MODULES := libinit_vili
+#TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
+
+#TW_SUPPORT_INPUT_AIDL_HAPTICS :=true
+#TW_SUPPORT_INPUT_AIDL_HAPTICS_FQNAME := "IVibrator/vibratorfeature"
+#TW_SUPPORT_INPUT_AIDL_HAPTICS_FIX_OFF := true
+#TW_LOAD_VENDOR_MODULES := "fts_touch_spi_k8.ko adsp_loader_dlkm.ko qti_battery_charger_main_odin.ko qti_battery_charger_main_$(PRODUCT_RELEASE_NAME).ko exfat.ko"
 #TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone20/temp"
 #TW_BATTERY_SYSFS_WAIT_SECONDS := 5
 #TW_BACKUP_EXCLUSIONS := /data/fonts
