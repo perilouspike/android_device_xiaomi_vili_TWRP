@@ -39,9 +39,6 @@ ENABLE_SCHEDBOOST := true
 # Arch Suffix
 TARGET_BOARD_SUFFIX := _64
 
-# Assert
-#TARGET_OTA_ASSERT_DEVICE :=
-
 # APEX
 DEXPREOPT_GENERATE_APEX_IMAGE := true
 
@@ -144,9 +141,9 @@ TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USES_MKE2FS := true # Use mke2fs to create ext4 images
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-#TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
-#TARGET_SYSTEM_PROP := $(DEVICE_PATH)/props/system.prop
-#TARGET_VENDOR_PROP := $(DEVICE_PATH)/props/vendor.prop
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
+TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
+TARGET_VENDOR_PROP := $(DEVICE_PATH)/vendor.prop
 
 # Anti-Roll Back
 PLATFORM_SECURITY_PATCH := 2099-12-31
@@ -211,9 +208,10 @@ TW_NO_LEGACY_PROPS := true
 TW_OVERRIDE_SYSTEM_PROPS := "ro.build.version.sdk" #needed for Android 11 Gapps
 
 # PBRP stuffs - specific lines
-
 PB_DISABLE_DEFAULT_DM_VERITY := true
 
+
+#
 #Init
 #TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_vili
 #TARGET_RECOVERY_DEVICE_MODULES := libinit_vili
