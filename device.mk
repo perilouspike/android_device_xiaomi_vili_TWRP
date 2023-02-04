@@ -54,5 +54,15 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     $(DEVICE_PATH)/security/miui_releasekey
 
-TWRP_REQUIRED_MODULES += miui_prebuilt \
-    magisk_prebuilt
+# Qcom common decryption
+PRODUCT_PACKAGES += \
+    qcom_decrypt\
+    qcom_decrypt_fbe
+    
+# fastboot/d hal
+PRODUCT_PACKAGES += \
+    android.hardware.fastboot@1.0-impl-mock \
+    fastbootd
+
+#TWRP_REQUIRED_MODULES += miui_prebuilt \
+    #magisk_prebuilt
