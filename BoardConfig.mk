@@ -12,7 +12,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
+
 DEVICE_PATH := device/xiaomi/vili
 
 # For building with minimal manifest
@@ -66,8 +66,8 @@ BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 
 
 # Kernel Source
-#TARGET_KERNEL_CONFIG :=
-#TARGET_KERNEL_SOURCE :=
+TARGET_KERNEL_CONFIG := vili_defconfig
+TARGET_KERNEL_SOURCE := kernel/xiaomi/vili
 TARGET_KERNEL_CLANG_COMPILE := true
 LC_ALL="C"
 
@@ -120,8 +120,9 @@ QCOM_BOARD_PLATFORMS += $(PRODUCT_PLATFORM)
 #A/B
 BOARD_USES_RECOVERY_AS_BOOT := true
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
-AB_OTA_UPDATER := true
 
+# A/B
+AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
     boot \
     dtbo \
@@ -159,6 +160,7 @@ BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
 BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
+BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
 
 # System as root
 BOARD_SUPPRESS_SECURE_ERASE := true
@@ -181,6 +183,7 @@ TW_INCLUDE_NTFS_3G := true
 TW_USE_TOOLBOX := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
+TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone20/temp"
 TW_MAX_BRIGHTNESS := 2047
 TW_DEFAULT_LANGUAGE := en
 TW_DEFAULT_BRIGHTNESS := 200
@@ -199,7 +202,7 @@ TW_USE_FSCRYPT_POLICY := 2
 
 # Tool
 TW_INCLUDE_REPACKTOOLS := true
-TW_INCLUDE_RESETPROP := true
+#TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_LIBRESETPROP := true
 TW_INCLUDE_BASH := true
 
@@ -211,7 +214,7 @@ TW_OVERRIDE_SYSTEM_PROPS := "ro.build.version.sdk" #needed for Android 11 Gapps
 PB_DISABLE_DEFAULT_DM_VERITY := true
 
 
-#
+## OTHER ##
 #Init
 #TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_vili
 #TARGET_RECOVERY_DEVICE_MODULES := libinit_vili
@@ -221,6 +224,5 @@ PB_DISABLE_DEFAULT_DM_VERITY := true
 #TW_SUPPORT_INPUT_AIDL_HAPTICS_FQNAME := "IVibrator/vibratorfeature"
 #TW_SUPPORT_INPUT_AIDL_HAPTICS_FIX_OFF := true
 #TW_LOAD_VENDOR_MODULES := "fts_touch_spi_k8.ko adsp_loader_dlkm.ko qti_battery_charger_main_odin.ko qti_battery_charger_main_$(PRODUCT_RELEASE_NAME).ko exfat.ko"
-#TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone20/temp"
 #TW_BATTERY_SYSFS_WAIT_SECONDS := 5
 #TW_BACKUP_EXCLUSIONS := /data/fonts
